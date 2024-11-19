@@ -11,6 +11,7 @@ let fs 			  = require('fs');
 //let credentials   = {key: privateKey, cert: certificate};
 let express       = require('express');
 let app           = express();
+const path = require('path'); 
 //let server 	  	  = https.createServer(credentials, app);
 app.use(cors({
     origin: '*',
