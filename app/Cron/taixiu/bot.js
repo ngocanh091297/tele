@@ -72,6 +72,7 @@ let random = function(){
 // Tài Xỉu RED
 let tx = function(bot, io){
 	let cuoc   = random();
+	console.log('randdjdjdjdjjdjd ',cuoc)
 	let select = !!((Math.random()*2)>>0);
 	if (select) {
 		io.taixiu.taixiu.red_tai        += cuoc;

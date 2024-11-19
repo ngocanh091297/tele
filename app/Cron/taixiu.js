@@ -94,6 +94,7 @@ let init = function(obj){
 	io = obj;
 	io.listBot = [];
 	UserInfo.find({type:true}, 'id name', function(err, list){
+		console.log('lay list tk ',list)
 		if (!!list && list.length) {
 			io.listBot = list.map(function(user){
 				user = user._doc;
@@ -616,6 +617,7 @@ let playGame = function(){
 					botListChat = [];
 				}
 			}else{
+				console.log('kkkk ',botList)
 				thongtin_thanhtoan(io.TaiXiu_phien);
 				
 				if (!!botList.length && io.TaiXiu_time > 4) {
