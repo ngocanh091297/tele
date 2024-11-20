@@ -75,12 +75,12 @@ let botchatRun = function () {
 					{ $sample: { size: 1 } }
 				]).exec(function (err, chatText) {
 					Helpers.shuffle(chatText);
-					Object.values(io.users).forEach(function (users) {
-						users.forEach(function (client) {
-							// var content = { taixiu: { chat: { message: { user: botListChat[0].name, value: chatText[0].Content, top: getIndex(_tops, botListChat[0].name) } } } };
-							// client.red(content);
-						});
-					});
+					// Object.values(io.users).forEach(function (users) {
+					// 	users.forEach(function (client) {
+					// 		// var content = { taixiu: { chat: { message: { user: botListChat[0].name, value: chatText[0].Content, top: getIndex(_tops, botListChat[0].name) } } } };
+					// 		// client.red(content);
+					// 	});
+					// });
 				});
 
 			}
@@ -125,7 +125,7 @@ let init = function (obj) {
 	};
 	topUser();
 	playGame();
-	botchatRun();
+	// botchatRun();
 }
 
 TXPhien.findOne({}, 'id', { sort: { 'id': -1 } }, function (err, last) {
@@ -678,12 +678,11 @@ let playGame = function () {
 				};
 				topUser();
 				let taixiucf = Helpers.getConfig('taixiu');
-				let a =!!taixiucf && taixiucf.bot && !!io.listBot && io.listBot.length > 0
-				console.log('dhkk ',a)
-				console.log('akakka ',taixiucf ,io.listBot)
+				// let a =!!taixiucf && taixiucf.bot && !!io.listBot && io.listBot.length > 0
+			
 				if (!!taixiucf && taixiucf.bot && !!io.listBot && io.listBot.length > 0) {
 					// lấy danh sách tài khoản bot
-					console.log('lay danh sách bot cuoi game')
+					// console.log('lay danh sách bot cuoi game')
 					botTemp = [...io.listBot];
 					botList = [...io.listBot];
 
@@ -700,11 +699,11 @@ let playGame = function () {
 			} else {
 
 				thongtin_thanhtoan(io.TaiXiu_phien);
-				console.log('vao cai time bot 2',botList)
+				
 				if (!!botList.length && io.TaiXiu_time > 4) {
 					let timeBot = (Math.floor(Math.random() * (3 - 1 + 1)) + 1) >> 0;
 
-                      console.log('vao cai time bot',timeBot)
+                 
 					if (!(io.TaiXiu_time % timeBot)) {
 
 						let userCuoc = 0;
@@ -713,12 +712,12 @@ let playGame = function () {
 						} else {
 							userCuoc = (Math.random() * 20) >> 0;
 						}
-						console.log('bot tai xiu choiccc')
+					
 						let iH = 0;
 						for (iH = 0; iH < userCuoc; iH++) {
 							let dataT = botList[iH];
 							if (!!dataT) {
-								console.log('bot tai xiu choi', dataT)
+							
 								bot.tx(dataT, io);
 								botList.splice(iH, 1); // Xoá bot đã đặt tránh trùng lặp
 							}
