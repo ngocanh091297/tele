@@ -271,6 +271,7 @@ let setTaiXiu_user = function(phien, dice){
 
 let thongtin_thanhtoan = function(game_id, dice = false){
 	if (dice) {
+		console.log('kq ')
 		let TaiXiu_red_tong_tai = 0;
 		let TaiXiu_red_tong_xiu = 0;
 
@@ -619,7 +620,7 @@ let playGame = function(){
 					botListChat = [];
 				}
 			}else{
-				console.log('kkkk ',botList)
+				
 				thongtin_thanhtoan(io.TaiXiu_phien);
 				
 				if (!!botList.length && io.TaiXiu_time > 4) {
