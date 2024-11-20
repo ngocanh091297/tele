@@ -290,7 +290,7 @@ let thongtin_thanhtoan = function(game_id, dice = false){
 				let TaiXiu_red_lech_tai  = TaiXiu_red_tong_tai > TaiXiu_red_tong_xiu ? true : false;
 				TaiXiu_red_tong_tai = null;
 				TaiXiu_red_tong_xiu = null;
-				console.log('list ng choi taxi ',list)
+				console.log('list ng choi taxi ',list ,TaiXiu_red_lech_tai,TaiXiu_tong_red_lech)
 				Promise.all(list.map(function(obj){
 					let oneUpdate = {};
 					let winH = false;
@@ -298,6 +298,7 @@ let thongtin_thanhtoan = function(game_id, dice = false){
 					if (obj.select === true){ // Tổng Red Tài
 						let win = dice > 10 ? true : false;
 						if (TaiXiu_red_lech_tai && TaiXiu_tong_red_lech > 0) {
+                              console.log('vao cia 1 ')
 							if (TaiXiu_tong_red_lech >= obj.bet) {
 								// Trả lại hoàn toàn
 								TaiXiu_tong_red_lech -= obj.bet
@@ -306,8 +307,19 @@ let thongtin_thanhtoan = function(game_id, dice = false){
 								obj.win       = win;
 								obj.tralai    = obj.bet;
 								obj.save();
-
-								!obj.bot && UserInfo.updateOne({id:obj.uid}, {$inc:{red:obj.bet}}).exec();
+                                if(!obj.bot){
+									UserInfo.updateOne({ id: obj.uid }, { $inc: { red: obj.bet } })
+									.exec()
+									.then(result => {
+									  // Kiểm tra kết quả trả về, result sẽ chứa thông tin về số bản ghi đã được thay đổi
+									  console.log("Cập nhật thành công:", result);
+									})
+									.catch(err => {
+									  // Nếu có lỗi xảy ra trong quá trình cập nhật
+									  console.error("Lỗi khi cập nhật:", err);
+									});
+								}
+							
 								return TXCuocOne.updateOne({uid:obj.uid, phien:game_id}, {$set:{win:win}, $inc:{tralai:obj.bet}}).exec();
 							}else{
 								// Trả lại 1 phần
@@ -326,7 +338,18 @@ let thongtin_thanhtoan = function(game_id, dice = false){
 									betwinP = truChietKhau(betPlay, 2);
 									obj.betwin    = betwinP;
 									let redUpdate = obj.bet+betwinP;
-									!obj.bot && UserInfo.updateOne({id:obj.uid}, {$inc:{totall:betwinP, red:redUpdate, redPlay:betPlay, redWin:betwinP}}).exec();
+									if(!obj.bot){
+										UserInfo.updateOne({id:obj.uid}, {$inc:{totall:betwinP, red:redUpdate, redPlay:betPlay, redWin:betwinP}}).exec()
+										.then(result => {
+											// Kiểm tra kết quả trả về, result sẽ chứa thông tin về số bản ghi đã được thay đổi
+											console.log("Cập nhật thành công:2", result);
+										  })
+										  .catch(err => {
+											// Nếu có lỗi xảy ra trong quá trình cập nhật
+											console.error("Lỗi khi cập nhật:2", err);
+										  });
+									}
+									
 									TaiXiu_User.updateOne({uid: obj.uid}, {$inc:{totall:betwinP, tWinRed:betwinP, tRedPlay:betPlay}}).exec();
 
 									if (!!vipConfig && vipConfig.status === true) {
@@ -340,7 +363,18 @@ let thongtin_thanhtoan = function(game_id, dice = false){
 										});
 									}
 								}else{
-									!obj.bot && UserInfo.updateOne({id:obj.uid}, {$inc:{totall:-betPlay, red:obj.tralai, redPlay:betPlay, redLost:betPlay}}).exec();
+									if(!obj.bot){
+										 UserInfo.updateOne({id:obj.uid}, {$inc:{totall:-betPlay, red:obj.tralai, redPlay:betPlay, redLost:betPlay}}).exec()
+										 .then(result => {
+											// Kiểm tra kết quả trả về, result sẽ chứa thông tin về số bản ghi đã được thay đổi
+											console.log("Cập nhật thành công:3", result);
+										  })
+										  .catch(err => {
+											// Nếu có lỗi xảy ra trong quá trình cập nhật
+											console.error("Lỗi khi cập nhật:3", err);
+										  });
+									}
+									
 									TaiXiu_User.updateOne({uid: obj.uid}, {$inc:{totall:-betPlay, tLostRed:betPlay, tRedPlay:betPlay}}).exec();
 								}
 								obj.save();
@@ -368,15 +402,36 @@ let thongtin_thanhtoan = function(game_id, dice = false){
 								}
 
 								let redUpdate = obj.bet+betwin;
-								!obj.bot && UserInfo.updateOne({id:obj.uid}, {$inc:{totall:betwin, red:redUpdate, redWin:betwin, redPlay:obj.bet}}).exec();
+								if(!obj.bot){
+									UserInfo.updateOne({id:obj.uid}, {$inc:{totall:betwin, red:redUpdate, redWin:betwin, redPlay:obj.bet}}).exec()
+									.then(result => {
+										// Kiểm tra kết quả trả về, result sẽ chứa thông tin về số bản ghi đã được thay đổi
+										console.log("Cập nhật thành công:4", result);
+									  })
+									  .catch(err => {
+										// Nếu có lỗi xảy ra trong quá trình cập nhật
+										console.error("Lỗi khi cập nhật:4", err);
+									  });
+								}
+							
 								TaiXiu_User.updateOne({uid: obj.uid}, {$inc:{totall:betwin, tWinRed:betwin, tRedPlay: obj.bet}}).exec();
 								return TXCuocOne.updateOne({uid:obj.uid, phien:game_id}, {$set:{win:true}, $inc:{betwin:betwin}}).exec();
 							}else{
 								obj.thanhtoan = true;
 								obj.save();
 								Helpers.MissionAddCurrent(obj.uid, (obj.bet*0.02>>0));
-
-								!obj.bot && UserInfo.updateOne({id:obj.uid}, {$inc:{totall:-obj.bet, redLost:obj.bet, redPlay:obj.bet}}).exec();
+                                 if(!obj.bot){
+									UserInfo.updateOne({id:obj.uid}, {$inc:{totall:-obj.bet, redLost:obj.bet, redPlay:obj.bet}}).exec()
+									.then(result => {
+										// Kiểm tra kết quả trả về, result sẽ chứa thông tin về số bản ghi đã được thay đổi
+										console.log("Cập nhật thành công:5", result);
+									  })
+									  .catch(err => {
+										// Nếu có lỗi xảy ra trong quá trình cập nhật
+										console.error("Lỗi khi cập nhật:5", err);
+									  });
+								 }
+							
 								TaiXiu_User.updateOne({uid: obj.uid}, {$inc:{totall:-obj.bet, tLostRed:obj.bet, tRedPlay:obj.bet}}).exec();
 							}
 						}
