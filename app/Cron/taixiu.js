@@ -308,6 +308,14 @@ let thongtin_thanhtoan = function(game_id, dice = false){
 								obj.tralai    = obj.bet;
 								obj.save();
                                 if(!obj.bot){
+									UserInfo.findOne({'id': obj.uid}, function(error, result2) {
+										if (error) {
+											console.error('Lỗi truy vấn UserInfo:', error);
+										
+										} else {
+											console.log("user da trc ap ", result2);
+										}
+									});
 									UserInfo.updateOne({ id: obj.uid }, { $inc: { red: obj.bet } })
 									.exec()
 									.then(result => {
@@ -317,6 +325,14 @@ let thongtin_thanhtoan = function(game_id, dice = false){
 									.catch(err => {
 									  // Nếu có lỗi xảy ra trong quá trình cập nhật
 									  console.error("Lỗi khi cập nhật:", err);
+									});
+									UserInfo.findOne({'id': obj.uid}, function(error, result2) {
+										if (error) {
+											console.error('Lỗi truy vấn UserInfo:', error);
+										
+										} else {
+											console.log("user da sau cap nhat ", result2);
+										}
 									});
 								}
 							
