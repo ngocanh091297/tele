@@ -50,7 +50,7 @@ let topUser = function() {
             }))
             .then(function(finalResults) {
                 // Xử lý kết quả cuối cùng sau khi tất cả các promise đã hoàn thành
-                console.log('Top users:', finalResults);
+                console.log('Top users:kk', finalResults);
             })
             .catch(function(err) {
                 console.error('Lỗi khi xử lý promise:', err);
@@ -289,6 +289,7 @@ let thongtin_thanhtoan = function(game_id, dice = false){
 				let TaiXiu_red_lech_tai  = TaiXiu_red_tong_tai > TaiXiu_red_tong_xiu ? true : false;
 				TaiXiu_red_tong_tai = null;
 				TaiXiu_red_tong_xiu = null;
+				console.log('list ng choi taxi ',list)
 				Promise.all(list.map(function(obj){
 					let oneUpdate = {};
 					let winH = false;
@@ -566,6 +567,7 @@ let playGame = function(){
 					TXPhien.create({'dice1':dice1, 'dice2':dice2, 'dice3':dice3, 'time':new Date()}, function(err, create){
 						if (!!create) {
 							io.TaiXiu_phien = create.id+1;
+							console.log('da co ket qua ',dice1+dice2+dice3)
 							thongtin_thanhtoan(create.id, dice1+dice2+dice3);
 							io.sendAllUser({taixiu: {finish:{dices:[create.dice1, create.dice2, create.dice3], phien:create.id}}});
 
