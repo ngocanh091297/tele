@@ -678,8 +678,12 @@ let playGame = function () {
 				};
 				topUser();
 				let taixiucf = Helpers.getConfig('taixiu');
+				let a =!!taixiucf && taixiucf.bot && !!io.listBot && io.listBot.length > 0
+				console.log('dhkk ',a)
+				console.log('akakka ',taixiucf ,io.listBot)
 				if (!!taixiucf && taixiucf.bot && !!io.listBot && io.listBot.length > 0) {
 					// lấy danh sách tài khoản bot
+					console.log('lay danh sách bot cuoi game')
 					botTemp = [...io.listBot];
 					botList = [...io.listBot];
 
