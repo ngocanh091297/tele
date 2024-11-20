@@ -316,6 +316,7 @@ let thongtin_thanhtoan = function(game_id, dice = false){
 											console.log("user da trc ap ", result2);
 										}
 									});
+									console.log('tyen  cong ',obj.bet ,typeof(obj.bet ))
 									UserInfo.updateOne({ id: obj.uid }, { $inc: { red: obj.bet } })
 									.exec()
 									.then(result => {
