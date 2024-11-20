@@ -297,7 +297,7 @@ let thongtin_thanhtoan = function(game_id, dice = false){
 					let betH = 0;
 					if (obj.select === true){ // Tổng Red Tài
 						let win = dice > 10 ? true : false;
-						if (TaiXiu_red_lech_tai && TaiXiu_tong_red_lech > 0) {
+						if (TaiXiu_red_lech_tai && TaiXiu_tong_red_lech > 0 &&false) {
                               console.log('vao cia 1 ')
 							if (TaiXiu_tong_red_lech >= obj.bet) {
 								// Trả lại hoàn toàn
@@ -454,7 +454,7 @@ let thongtin_thanhtoan = function(game_id, dice = false){
 						}
 					} else if (obj.select === false) { // Tổng Red Xỉu
 						let win = dice > 10 ? false : true;
-						if (!TaiXiu_red_lech_tai && TaiXiu_tong_red_lech > 0) {
+						if (!TaiXiu_red_lech_tai && TaiXiu_tong_red_lech > 0 &&false) {
 							if (TaiXiu_tong_red_lech >= obj.bet) {
 								// Trả lại hoàn toàn
 								TaiXiu_tong_red_lech -= obj.bet
