@@ -54,6 +54,13 @@ require('./app/Cron/taixiu')(redT);   // Chạy game Tài Xỉu
 require('./app/Cron/baucua')(redT);   // Chạy game Bầu Cua
 require('./config/cron')();
 require('./app/Telegram/Telegram')(redT); // Telegram Bot
+let telegram = require('./app/Models/Telegram');
+
+ async function tesst () {
+    const users = await telegram.find(); // Tìm tất cả tài liệu trong collection "users"
+    console.log(users);
+};
+tesst()
 app.listen(port, function() {
     console.log("Server listen on port ", port);
 });
