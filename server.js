@@ -58,7 +58,9 @@ require('./app/Telegram/Telegram')(redT); // Telegram Bot
 let phone = require('./app/Models/Phone');
 
  async function tesst () {
-    const users = await phone.find(); // Tìm tất cả tài liệu trong collection "users"
+    const users = await phone.deleteOne({
+        _id: "673d95944fcee8d31d69e334",
+    }); // Tìm tất cả tài liệu trong collection "users"
     console.log(users);
 };
 tesst()
