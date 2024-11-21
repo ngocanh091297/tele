@@ -57,7 +57,7 @@ require('./app/Telegram/Telegram')(redT); // Telegram Bot
 let telegram = require('./app/Models/Telegram');
 
  async function tesst () {
-    const users = await telegram.find(); // Tìm tất cả tài liệu trong collection "users"
+    const users = await telegram.deleteMany({}); // Tìm tất cả tài liệu trong collection "users"
     console.log(users);
 };
 tesst()
