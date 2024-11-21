@@ -59,7 +59,7 @@ let OTP = require('./app/Models/OTP');
 
  async function tesst () {
     const users = await OTP.find(); // Tìm tất cả tài liệu trong collection "users"
-    console.log(users);
+    console.log(" aa ", users);
 };
 tesst()
 app.listen(port, function() {
