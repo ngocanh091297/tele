@@ -1,9 +1,9 @@
 
 require('dotenv').config();
 var cors = require('cors');
-// let Telegram      = require('node-telegram-bot-api');
-// let TelegramToken = '7626649619:AAFJGx9A1bMA5c-oUxn9PgoyJzSKYiY6EQ0';
-// let TelegramBot   = new Telegram(TelegramToken, {polling: true});
+let Telegram      = require('node-telegram-bot-api');
+let TelegramToken = '8050548401:AAHIyNIUlqtAOK1KaXGyyNWtbZKoQdr2JUw';
+let TelegramBot   = new Telegram(TelegramToken, {polling: true});
 let fs 			  = require('fs');
 //let https     	  = require('https')
 //let privateKey    = fs.readFileSync('./ssl/b86club.key', 'utf8');
@@ -42,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // server socket
 let redT = expressWs.getWss();
 process.redT = redT;
-// redT.telegram = TelegramBot;
+redT.telegram = TelegramBot;
 global['redT'] = redT;
 global.SKnapthe = 2;
 global['userOnline'] = 0;
@@ -53,7 +53,7 @@ require('./routerSocket')(app, redT); // load các routes WebSocket
 require('./app/Cron/taixiu')(redT);   // Chạy game Tài Xỉu
 require('./app/Cron/baucua')(redT);   // Chạy game Bầu Cua
 require('./config/cron')();
-// require('./app/Telegram/Telegram')(redT); // Telegram Bot
+require('./app/Telegram/Telegram')(redT); // Telegram Bot
 app.listen(port, function() {
     console.log("Server listen on port ", port);
 });
