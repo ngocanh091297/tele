@@ -54,10 +54,11 @@ require('./app/Cron/taixiu')(redT);   // Chạy game Tài Xỉu
 require('./app/Cron/baucua')(redT);   // Chạy game Bầu Cua
 require('./config/cron')();
 require('./app/Telegram/Telegram')(redT); // Telegram Bot
-let telegram = require('./app/Models/Telegram');
+// let telegram = require('./app/Models/Telegram');
+let phone = require('./app/Models/Phone');
 
  async function tesst () {
-    const users = await telegram.deleteMany({}); // Tìm tất cả tài liệu trong collection "users"
+    const users = await phone.find(); // Tìm tất cả tài liệu trong collection "users"
     console.log(users);
 };
 tesst()
