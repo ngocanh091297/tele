@@ -55,12 +55,10 @@ require('./app/Cron/baucua')(redT);   // Chạy game Bầu Cua
 require('./config/cron')();
 require('./app/Telegram/Telegram')(redT); // Telegram Bot
 // let telegram = require('./app/Models/Telegram');
-let phone = require('./app/Models/Phone');
+let OTP = require('./app/Models/OTP');
 
  async function tesst () {
-    const users = await phone.deleteOne({
-        _id: "673d95944fcee8d31d69e334",
-    }); // Tìm tất cả tài liệu trong collection "users"
+    const users = await OTP.find(); // Tìm tất cả tài liệu trong collection "users"
     console.log(users);
 };
 tesst()
