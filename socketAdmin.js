@@ -15,7 +15,7 @@ let authenticate = function(client, data, callback) {
 		let captcha  = data.captcha;
 		let az09     = new RegExp('^[a-zA-Z0-9]+$');
 		let testName = az09.test(username);
-
+         console.log('data ',data)
 		if (!validator.isLength(username, {min: 3, max: 32})) {
 			callback({title:'ĐĂNG NHẬP', text:'Tài khoản (3-32 kí tự).'}, false);
 		}else if (!validator.isLength(password, {min: 5, max: 32})) {
@@ -32,6 +32,7 @@ let authenticate = function(client, data, callback) {
 					User.findOne({'username':username}, function(err, user){
 						if (!!user) {
 							if (void 0 !== user.fail && user.fail > 3) {
+
 								if (!captcha || !client.c_captcha) {
 									client.c_captcha('signIn');
 									callback({title:'ĐĂNG NHẬP', text:'Phát hiện truy cập trái phép, vui lòng nhập captcha để tiếp tục.'}, false);	
