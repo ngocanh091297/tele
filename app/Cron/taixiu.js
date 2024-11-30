@@ -74,13 +74,14 @@ let botchatRun = function () {
 				TXBotChat.aggregate([
 					{ $sample: { size: 1 } }
 				]).exec(function (err, chatText) {
+					console.log('aajajajaaaall ',chatText)
 					Helpers.shuffle(chatText);
-					// Object.values(io.users).forEach(function (users) {
-					// 	users.forEach(function (client) {
-					// 		// var content = { taixiu: { chat: { message: { user: botListChat[0].name, value: chatText[0].Content, top: getIndex(_tops, botListChat[0].name) } } } };
-					// 		// client.red(content);
-					// 	});
-					// });
+					Object.values(io.users).forEach(function (users) {
+						users.forEach(function (client) {
+							var content = { taixiu: { chat: { message: { user: botListChat[0].name, value: chatText[0].Content, top: getIndex(_tops, botListChat[0].name) } } } };
+							client.red(content);
+						});
+					});
 				});
 
 			}
@@ -125,7 +126,7 @@ let init = function (obj) {
 	};
 	topUser();
 	playGame();
-	// botchatRun();
+	botchatRun();
 }
 
 TXPhien.findOne({}, 'id', { sort: { 'id': -1 } }, function (err, last) {
