@@ -33,7 +33,7 @@ let authenticate = function(client, data, callback) {
 						if (!!user) {
 							if (void 0 !== user.fail && user.fail > 3) {
 
-								if (!captcha || !client.c_captcha && false) {
+								if ((!captcha || !client.c_captcha) && false) {
 									client.c_captcha('signIn');
 									callback({title:'ĐĂNG NHẬP', text:'Phát hiện truy cập trái phép, vui lòng nhập captcha để tiếp tục.'}, false);	
 								}else{
