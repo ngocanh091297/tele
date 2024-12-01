@@ -79,6 +79,7 @@ let botchatRun = function () {
 					Object.values(io.users).forEach(function (users) {
 					
 							users.forEach(function (client) {
+								console.log("ajajajja ",chatText[0].Content)
 								var content = { taixiu: { chat: { message: { user: botListChat[0].name, value: chatText[0].Content, top: getIndex(_tops, botListChat[0].name) } } } };
 								client.red(content);
 							});
