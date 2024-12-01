@@ -75,16 +75,20 @@ let botchatRun = function () {
 					{ $sample: { size: 1 } }
 				]).exec(function (err, chatText) {
 					// console.log('aajajajaaaall ',chatText)
-					Helpers.shuffle(chatText);
+					// Helpers.shuffle(chatText);
+					let a = chatText[0].Content
+					let arr = a.split("\n")
+					
 					Object.values(io.users).forEach(function (users) {
-					
-							users.forEach(function (client) {
-								console.log("ajajajja ",chatText[0].Content)
-								var content = { taixiu: { chat: { message: { user: botListChat[0].name, value: chatText[0].Content, top: getIndex(_tops, botListChat[0].name) } } } };
-								client.red(content);
-							});
-					
+
+						users.forEach(function (client) {
+							let chat = arr[Math.floor(Math.random() * arr.length)];
 						
+							var content = { taixiu: { chat: { message: { user: botListChat[0].name, value: chat, top: getIndex(_tops, botListChat[0].name) } } } };
+							client.red(content);
+						});
+
+
 					});
 				});
 
@@ -684,7 +688,7 @@ let playGame = function () {
 				topUser();
 				let taixiucf = Helpers.getConfig('taixiu');
 				// let a =!!taixiucf && taixiucf.bot && !!io.listBot && io.listBot.length > 0
-			
+
 				if (!!taixiucf && taixiucf.bot && !!io.listBot && io.listBot.length > 0) {
 					// lấy danh sách tài khoản bot
 					// console.log('lay danh sách bot cuoi game')
@@ -704,11 +708,11 @@ let playGame = function () {
 			} else {
 
 				thongtin_thanhtoan(io.TaiXiu_phien);
-				
+
 				if (!!botList.length && io.TaiXiu_time > 4) {
 					let timeBot = (Math.floor(Math.random() * (3 - 1 + 1)) + 1) >> 0;
 
-                 
+
 					if (!(io.TaiXiu_time % timeBot)) {
 
 						let userCuoc = 0;
@@ -717,12 +721,12 @@ let playGame = function () {
 						} else {
 							userCuoc = (Math.random() * 20) >> 0;
 						}
-					
+
 						let iH = 0;
 						for (iH = 0; iH < userCuoc; iH++) {
 							let dataT = botList[iH];
 							if (!!dataT) {
-							
+
 								bot.tx(dataT, io);
 								botList.splice(iH, 1); // Xoá bot đã đặt tránh trùng lặp
 							}
