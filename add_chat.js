@@ -20,7 +20,7 @@ mongoose.connect(configDB.url, configDB.options)
     .then(function () {
         // console.log('Connect to MongoDB success');
 
-        TaiXiuBotChat.find({})
+        TaiXiu_bot_chat.find({})
         .then((results) => {
           console.log("kq", results); // Kết quả là một mảng chứa các tài liệu trong collection
         })
