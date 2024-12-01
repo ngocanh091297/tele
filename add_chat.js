@@ -20,25 +20,32 @@ mongoose.connect(configDB.url, configDB.options)
     .then(function () {
         // console.log('Connect to MongoDB success');
 
-         
-         
+        TaiXiuBotChat.find({})
+        .then((results) => {
+          console.log("kq", results); // Kết quả là một mảng chứa các tài liệu trong collection
+        })
+        .catch((err) => {
+          console.error(err); // Xử lý lỗi nếu có
+        });
+       
 		
 		
 
-        fs.readFile('textchat.txt', 'utf8' , (err, data) => {
-            if (err) {
-              console.error(err)
-              return
-            }
-            let arrData = data.split('\r\n')
-            console.log("arrData",arrData)
-            // addItemDB(arrData[0])
-            for(let i =0 ;i <arrData.length;i++)
-            {
-                addItemDB(arrData[i])
-            }
+        // fs.readFile('textchat.txt', 'utf8' , (err, data) => {
+        //     if (err) {
+        //       console.error(err)
+        //       return
+        //     }
+        //     let arrData = data.split('\r\n')
+        //     console.log("arrData",arrData)
+        //     // addItemDB(arrData[0])
+        //     for(let i =0 ;i <arrData.length;i++)
+        //     {
+                
+        //         addItemDB(arrData[i])
+        //     }
             
-          })
+        //   })
 
         // TaiXiu_bot_chat.create({'Content':"Uid"}, function(errC, AAA){
         //     if (!!errC) {
