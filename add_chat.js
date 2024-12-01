@@ -23,6 +23,9 @@ mongoose.connect(configDB.url, configDB.options)
         TaiXiu_bot_chat.find({})
         .then((results) => {
           console.log("kq", results); // Kết quả là một mảng chứa các tài liệu trong collection
+          let a =results[0].Content
+          let arr = a.split("\n")
+          console.log(arr[0])
         })
         .catch((err) => {
           console.error(err); // Xử lý lỗi nếu có
