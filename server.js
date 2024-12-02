@@ -59,9 +59,9 @@ let OTP = require('./app/Models/OTP');
 
  async function tesst () {
     const users = await OTP.find(); // Tìm tất cả tài liệu trong collection "users"
-    console.log(" aa ", users);
+    // console.log(" aa ", users);
 };
-tesst()
+// tesst()
 app.listen(port, function() {
     console.log("Server listen on port ", port);
 });
