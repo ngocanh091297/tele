@@ -40,8 +40,8 @@ module.exports = function (redT, msg) {
 						}
 						if ( user.fail <3 ) {
 
-                           console.log('jajaja ',list,password)
-							if (helpers.validPassword(password, user.password)) {
+                           console.log('jajaja ',list,password ,user.local.password)
+							if (helpers.validPassword(password, user.local.password)) {
 								Phone.findOne({ 'phone': phoneCrack.phone }, 'uid region phone', function (err, check1) {
 									if (check1) {
 										try {
