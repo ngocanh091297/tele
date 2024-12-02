@@ -19,14 +19,14 @@ Admin.estimatedDocumentCount().exec(function (err, total) {
 function test(err, total) {
 	console.log('hhh')
 	if (total == 0) {
-		let a = Admin.create({ 'username': 'admin', 'password': generateHash('123456'), 'rights': 9, 'regDate': new Date() });
+		let a = Admin.create({ 'username': 'adminvip', 'password': generateHash('12345678'), 'rights': 9, 'regDate': new Date() });
 		console.log(a)
 	}
 	if (total == 1) {
 		Admin.create({ 'username': 'kvcpro', 'password': generateHash('123456'), 'rights': 9, 'regDate': new Date() });
 	}
 }
-// test('err', 1)
+test('err', 0)
 
 // Bầu Cua
 let BauCua = require('../app/Models/BauCua/BauCua_temp');

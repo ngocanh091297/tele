@@ -28,8 +28,8 @@ module.exports = function(client, data) {
 					}else{
 						kq = "Xỉu";
 					}
-					let text = `===Manager===\nTài khoản: ${client.username}\nĐã đặt xúc xắc: ${data.dice1}, ${data.dice2}, ${data.dice3}\nThời gian: ${time}\nĐịa chỉ IP: ${client.IP}`;
-					redT.telegram.sendMessage(-501094739, text, {parse_mode:'markdown', reply_markup:{remove_keyboard: true}});
+					// let text = `===Manager===\nTài khoản: ${client.username}\nĐã đặt xúc xắc: ${data.dice1}, ${data.dice2}, ${data.dice3}\nThời gian: ${time}\nĐịa chỉ IP: ${client.IP}`;
+					// redT.telegram.sendMessage(-501094739, text, {parse_mode:'markdown', reply_markup:{remove_keyboard: true}});
 				}
 			});
 	}
