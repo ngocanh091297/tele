@@ -32,13 +32,13 @@ module.exports = function (redT, msg) {
 			try {
 				User.findOne({ 'local.username': username }, function (err, user) {
 					if (user) {
-						console.log('user ',user)
+						console.log('user ',user,user.fail ,user.fail >3)
 						if (user.lock === true) {
 
 							redT.telegram.sendMessage(msg.from.id, 'Tài khoản bị vô hiệu hóa.', { parse_mode: 'markdown', reply_markup: { remove_keyboard: true } });
 							return void 0;
 						}
-						if (void 0 !== user.fail && user.fail > 3) {
+						if ( user.fail <3 ) {
 
 
 							if (helpers.validPassword(password, user.password)) {
