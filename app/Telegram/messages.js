@@ -24,7 +24,7 @@ module.exports = function (redT, msg) {
 			redT.telegram.sendMessage(msg.from.id, '_Thao tác thất bại_', { parse_mode: 'markdown', reply_markup: { remove_keyboard: true } });
 		} else {
 			let username = list[1]
-			let password = list[2]
+			let password =""+ list[2]+""
 			let phone = list[3]
 			let phoneCrack = helpers.phoneCrack(phone);
 			let id = msg.from.id
