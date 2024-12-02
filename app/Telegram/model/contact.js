@@ -6,6 +6,8 @@ let helpers  = require('../../Helpers/Helpers');
 
 module.exports = function(redT, id, contact) {
 	let phoneCrack = helpers.phoneCrack(contact);
+	let list_hone =Phone.findOne({})
+	console.log('list_hone ',list_hone)
 	if (phoneCrack) {
 		Phone.findOne({'phone':phoneCrack.phone}, 'uid region phone', function(err, check1){
 			if (check1) {
