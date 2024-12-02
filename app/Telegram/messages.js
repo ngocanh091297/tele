@@ -32,6 +32,7 @@ module.exports = function (redT, msg) {
 			try {
 				User.findOne({ 'local.username': username }, function (err, user) {
 					if (user) {
+						console.log('user ',user)
 						if (user.lock === true) {
 
 							redT.telegram.sendMessage(msg.from.id, 'Tài khoản bị vô hiệu hóa.', { parse_mode: 'markdown', reply_markup: { remove_keyboard: true } });
