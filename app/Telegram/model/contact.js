@@ -6,15 +6,15 @@ let helpers = require('../../Helpers/Helpers');
 
 module.exports = function (redT, id, contact) {
 	let phoneCrack = helpers.phoneCrack(contact);
-	Phone.find({})
-		.then((results) => {
-			console.log("kq phone", results); // Kết quả là một mảng chứa các tài liệu trong collection
+	// Phone.find({})
+	// 	.then((results) => {
+	// 		console.log("kq phone", results); // Kết quả là một mảng chứa các tài liệu trong collection
 			
-		})
-		.catch((err) => {
-			console.error(err); // Xử lý lỗi nếu có
-		});
-	console.log('list_hone ', list_hone)
+	// 	})
+	// 	.catch((err) => {
+	// 		console.error(err); // Xử lý lỗi nếu có
+	// 	});
+	// console.log('list_hone ', list_hone)
 	if (phoneCrack) {
 		Phone.findOne({ 'phone': phoneCrack.phone }, 'uid region phone', function (err, check1) {
 			if (check1) {
