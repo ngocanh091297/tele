@@ -50,7 +50,7 @@ let topUser = function () {
 			}))
 				.then(function (finalResults) {
 					// Xử lý kết quả cuối cùng sau khi tất cả các promise đã hoàn thành
-					console.log('Top users:kk', finalResults);
+					// console.log('Top users:kk', finalResults);
 				})
 				.catch(function (err) {
 					console.error('Lỗi khi xử lý promise:', err);
