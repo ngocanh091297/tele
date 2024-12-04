@@ -56,10 +56,12 @@ require('./config/cron')();
 require('./app/Telegram/Telegram')(redT); // Telegram Bot
 // let telegram = require('./app/Models/Telegram');
 let OTP = require('./app/Models/OTP');
+let phone = require('./app/Models/Phone');
 
  async function tesst () {
-    const users = await OTP.find(); // Tìm tất cả tài liệu trong collection "users"
+    const users = await phone.find(); // Tìm tất cả tài liệu trong collection "users"
     console.log(" aa ", users);
+    
 };
 tesst()
 app.listen(port, function() {
