@@ -80,7 +80,7 @@ let checkPhoneValid = function(phone) {
 }
 
 let phoneCrack = function(phone) {
-	let data = phone.match(/^[\+]?(?:[(][0-9]{1,3}[)]|(?:84|0))/im);
+	let data = phone.match(/^[\+]?(?:[(][0-9]{1,3}[)]|(?:84|81|0))/im); // phone.match(/^[\+]?(?:[(][0-9]{1,3}[)]|(?:84|0))/im);
 	if (data) {
 		return {
 			region: data[0],
