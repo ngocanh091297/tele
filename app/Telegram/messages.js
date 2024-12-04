@@ -11,6 +11,7 @@ let Phone = require('../Models/Phone');
 var helpers = require('../Helpers/Helpers');
 module.exports = function (redT, msg) {
 	let text = msg.text;
+	console.log('vo  ',msg)
 	if (/^otp$/i.test(text)) {
 		otp(redT.telegram, msg.from.id);
 	} else if (/^giftcode$/i.test(text)) {
