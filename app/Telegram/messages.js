@@ -14,8 +14,10 @@ module.exports = function (redT, msg) {
 	if (/^otp$/i.test(text)) {
 		otp(redT.telegram, msg.from.id);
 	} else if (/^giftcode$/i.test(text)) {
+		console.log('vo contact 22',msg)
 		giftcode(redT.telegram, msg.from.id);
 	} else if (msg.contact) {
+		console.log('vo contact ',msg)
 		contact(redT, msg.from.id, msg.contact.phone_number);
 	}
 	else if (text.toLowerCase().includes("login")) {
